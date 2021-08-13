@@ -1,0 +1,21 @@
+#
+# module load intel/15.0.3 cuda/5.5 impi/2019.2
+#
+
+objects = struct_benchmark.cpp
+
+   FC = nc++
+   FFLAGS =
+   INCLUDE_PATH = -I /opt/nec/ve/nlc/2.0.0/include/ -I ../
+   LDFLAGS = -D __USE_NEC_SX_AURORA__ -lasl_openmp_i64 -DASL_LIB_INT64 -O3 -fopenmp -proginf -report-all -mparallel -mretain-list-vector
+   TARGET = struct.out
+
+default: $(objects)
+	$(FFLAGS) $(FC) $(LDFLAGS) $(INCLUDE_PATH) -o $(TARGET) $(objects)
+   $(objects) :
+
+clean:
+	rm -f $(TARGET) *.o
+
+# How to run
+# sbatch -n X -N X --ntasks-per-node=1 --partition=gpu --time=Y impi ./lcopt-soft task.txt
