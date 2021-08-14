@@ -3,4 +3,4 @@ project(struct_benchmark)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(struct_benchmark struct_benchmark.cpp)
+add_executable(struct_benchmark struct_benchmark.cpp struct_benchmark.cu)
